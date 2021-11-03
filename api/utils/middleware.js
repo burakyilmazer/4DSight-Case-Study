@@ -6,27 +6,36 @@ import {secretKey} from '../src/config';
 import User from '../models/user';
 
 const utils = new Util();
-exports.middleware = function(){
-	return async (req, res, next) => {
-		const token = req.headers.authorization;
+class Middleware {
+	
+	static async checkToken(req, res, next) {
+		try {
+			const token = req.headers.authorization;
 		
-		const user = await User.findOne({token});
-		
-		if (!user) {
-			utils.setError(401, 'Unauthorized');
-			return utils.send(res);
-		}
-
-		jwt.verify(token, md5(secretKey), async (err, decoded) => {
-
-			if (!decoded || err) {
-				utils.setError(401,  'Unauthorized');
+			const user = await User.findOne({token});
+				
+			if (!user) {
+				utils.setError(401, 'Unauthorized');
 				return utils.send(res);
 			}
-  
-			req.decoded = decoded;
-			next();
-    
-		});
-	};
-};
+		
+			jwt.verify(token, md5(secretKey), async (err, decoded) => {
+		
+				if (!decoded || err) {
+					utils.setError(401,  'Unauthorized');
+					return utils.send(res);
+				}
+			
+				req.decoded = decoded;
+				next();
+				
+			});
+		}
+		catch (error){
+			throw error;
+		}
+	}
+	
+}
+
+export default Middleware;
