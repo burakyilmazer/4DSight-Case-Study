@@ -68,8 +68,7 @@ module.exports = {
     
     basedir: __dirname, // app absolute path
     files: [
-      '../../private/controllers/**/*.js',
-      '../../public/controllers/**/*.js',
+      '../controllers/**/*.js',
     ],
   },
 

@@ -1,6 +1,5 @@
 import express from 'express';
 import path from 'path';
-import Helpers from '../utils/helpers';
 
 const app = express();
 const basename = path.basename(__filename);
@@ -17,9 +16,8 @@ require('fs')
  	})
  	.forEach((file) => {
 
- 		const routeName = Helpers.getFileRoute(file);
  		app.use(
- 			`/api/${routeName}`,
+ 			'/',
  			require(folderRoute + path.sep + file.split('.')[0])
  		);
 	

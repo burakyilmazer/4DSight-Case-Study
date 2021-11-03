@@ -6,10 +6,10 @@ import mongoose from 'mongoose';
 
 import { swaggerOptions, mongo_connections } from './src/config';
 import http from 'http';
+import routes from './route';
 
 const app = express();
 const server = http.createServer(app);
-
 
 const  expressSwagger = require('express-swagger-generator')(app);
 const port = 3000;
@@ -21,18 +21,12 @@ app.use(bodyParser.json());
 
 app.use(cors());
 const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
-// mongoose.connect(
-// 	mongo_connections[env].host, 
-// 	{ 
-// 		useNewUrlParser: true,
-// 		useUnifiedTopology: true,
-// 		useCreateIndex: true,
-// 		auth: mongo_connections[env].auth,
-// 		user: mongo_connections[env].user,
-// 		pass: mongo_connections[env].pass
-// 	});
-
-// mongoose.set('useFindAndModify', true);
+mongoose.connect(
+	mongo_connections[env].host, 
+	{ 
+		useNewUrlParser: true,
+		useUnifiedTopology: true
+	});
 
 app.get('/health', async (req, res) => {
 	
@@ -43,10 +37,9 @@ app.get('/health', async (req, res) => {
 	
 });
 
-// app.use('/private', privateRoute);
+app.use('/', routes);
 
 expressSwagger(swaggerOptions);
-
 
 server.listen(port, () => {
 	console.log('server is running on port ', port);
