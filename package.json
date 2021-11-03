@@ -1,0 +1,38 @@
+{
+  "name": "4dsight-case-study",
+  "version": "1.0.0",
+  "description": "4D Sight Case Study",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node ./api/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burakyilmazer/4DSight-Case-Study.git"
+  },
+  "author": "Burak Yılmazer",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12",
+    "cors": "^2.8.5",
+    "express-swagger-generator": "^1.1.17",
+    "nodemailer": "^6.4.17",
+    "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/register": "^7.12.10",
+    "@babel/runtime": "^7.12.5",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.15.0",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0"
+  }
+}
