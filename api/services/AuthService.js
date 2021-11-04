@@ -19,7 +19,7 @@ class AuthService {
 			const createUser = await User.create(body);
 			
 			if (!createUser) {
-				return {type: false, message: ''};
+				return {type: false, message: 'Failed create user'};
 			}
 			
 			const token = jwt.sign({
@@ -33,7 +33,7 @@ class AuthService {
 			delete createUserJson.password;
 		  createUserJson.token = token;
 
-		  return {type: true, message: 'Success', data: createUserJson};
+		  return {type: true, message: 'Success create user', data: createUserJson};
 
 		}
 		catch (error){
@@ -73,7 +73,7 @@ class AuthService {
 	static async logout(req) {
 		try {
 			const userId = req.decoded.id;
-			await User.findOneAndUpdate({_id: ObjectId(userId)}, {token: ''});
+			await User.findOneAndUpdate({_id: userId}, {token: ''});
 			return {type: true, message: 'Success Logout'};
 		}
 		catch (error){
