@@ -1,5 +1,11 @@
 # 4DSight-Case-Study
 
+# Requirement
+
+- node.js (versiyon = v14.16.1)
+
+# Run App
+
 - npm install
 - npm start
 
